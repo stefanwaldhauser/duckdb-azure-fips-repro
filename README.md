@@ -80,9 +80,7 @@ FIPS chain (previously only the Node-specific `nodejs_conf` was).
 
 ## Ask
 
-- Does this diagnosis match how the extension's bundled OpenSSL is initialized?
 - Is there a supported way to run the extension on a FIPS-enabled host today?
-- What does `duckdb-azure` consider the right path long-term?
 
 [27691]: https://github.com/openssl/openssl/issues/27691
 [vcpkg]: https://github.com/duckdb/duckdb-azure/blob/f30be756fbafa5a1ef5f8ea372b81f7fe7916164/vcpkg.json#L10-L13
