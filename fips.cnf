@@ -1,0 +1,24 @@
+# Routes BOTH app-names (nodejs_conf and the default openssl_conf) into the same
+# FIPS activation chain. Any libcrypto in the process that doesn't specify an
+# app-name enters it. Removing the `openssl_conf = fips_init` line restricts
+# FIPS to app-name `nodejs_conf` and makes the bug disappear.
+OPENSSL_DEFAULT_PROVIDER = 1
+
+nodejs_conf  = fips_init
+openssl_conf = fips_init
+
+.include /etc/ssl/fipsmodule.cnf
+
+[fips_init]
+providers    = provider_sect
+alg_section  = algorithm_sect
+
+[provider_sect]
+default = default_sect
+fips    = fips_sect
+
+[default_sect]
+activate = $ENV::OPENSSL_DEFAULT_PROVIDER
+
+[algorithm_sect]
+default_properties = fips=yes
